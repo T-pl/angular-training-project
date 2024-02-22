@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Housinglocation } from '../housinglocation';
+import { RouterLink, RouterOutlet } from '@angular/router';
+
 @Component({
   selector: 'app-housing-location',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, RouterOutlet],
   template: `
     <section class="listing">
       <img
@@ -16,6 +18,10 @@ import { Housinglocation } from '../housinglocation';
       <p class="listing-location">
         {{ housingLocation.city }}, {{ housingLocation.state }}
       </p>
+      <h4 class="listing-heading">
+        {{ housingLocation.wifi ? 'Wifi free' : 'No Wifi' }}
+      </h4>
+      <a [routerLink]="['/details', housingLocation.id]">Learn More</a>
     </section>
   `,
   styleUrl: './housing-location.component.scss',
